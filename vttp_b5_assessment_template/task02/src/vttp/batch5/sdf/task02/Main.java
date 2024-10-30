@@ -12,20 +12,20 @@ import java.io.IOException;
 public class Main {
 	public static void main(String[] args) throws Exception {
 
+		// prompt user to pass in .txt file name as argument when running
 		if (args.length != 1) {
 			System.out.println("Add in path to .txt file when running");
 			System.out.println("Format: java -cp classes vttp.batch5.sdf.task02.Main <TTT/figure1.txt>");
 			System.out.println("Where <> is .txt file name");
-
 		}
 
+		// declare variables
 		String txtFile = args[0];
 		char[][] board = readBoard(txtFile);
-
+		// output template
 		System.out.println("Processing: " + txtFile);
 		System.out.println("Board:\n");
 		printBoard(board);
-
 		int[][] utilityTable = calculateUtilityTable(board);
 		System.out.println("---------------------------");
 		printUtilityTable(utilityTable);
@@ -84,7 +84,7 @@ public class Main {
 		return lose;
 	}
 
-	public static boolean checkIfWin(char[][] board, char player) {
+	private static boolean checkIfWin(char[][] board, char player) {
 		for (int i = 0; i < 3; i++) {
 			if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
 				return true;
