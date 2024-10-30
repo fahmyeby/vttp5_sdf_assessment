@@ -1,3 +1,7 @@
+// Name:Muhammad Fahmy bin Zyenal Ebydean
+// Email: fahmyebyyussoff@yahoo.com.sg
+// Group A
+
 package vttp.batch5.sdf.task01;
 
 import java.io.BufferedReader;
@@ -9,15 +13,14 @@ import java.util.List;
 
 public class Main {
 
-	
 	static class RiderData {
-		//initialize variable
-		int day; 
-		int season; 
+		// initialize variable
+		int day;
+		int season;
 		int totalRiders;
-		int weather; 
-		boolean holiday; 
-		int month; 
+		int weather;
+		boolean holiday;
+		int month;
 
 		// constructor
 		public RiderData(int day, int season, int totalRiders, int weather, boolean holiday, int month) {
@@ -123,14 +126,14 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		String csvFile = "vttp_b5_assessment_template/task01/day.csv";//csv file path
-		String line; 
-		boolean header = true; 
+		String csvFile = "vttp_b5_assessment_template/task01/day.csv";// csv file path
+		String line;
+		boolean header = true;
 		List<RiderData> riderDataList = new ArrayList<>();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(csvFile));
-			//skip header
+			// skip header
 			while (header) {
 				header = false;
 			}
@@ -138,7 +141,7 @@ public class Main {
 				String[] columns = line.split(",");
 
 				try {
-					//parse csv
+					// parse csv
 					int season = Integer.parseInt(columns[0].trim());
 					int month = Integer.parseInt(columns[1].trim());
 					int holidayValue = Integer.parseInt(columns[2].trim());
@@ -146,7 +149,7 @@ public class Main {
 					int weather = Integer.parseInt(columns[4].trim());
 					int col8 = Integer.parseInt(columns[8].trim());
 					int col9 = Integer.parseInt(columns[9].trim());
-					int totalRiders = col8 + col9; 
+					int totalRiders = col8 + col9;
 					boolean holiday = (holidayValue == 1); // convert from int to boolean
 					riderDataList.add(new RiderData(day, season, totalRiders, weather, holiday, month));
 
@@ -159,16 +162,22 @@ public class Main {
 			riderDataList.sort(new Comparator<RiderData>() {
 				@Override
 				public int compare(RiderData r1, RiderData r2) {
-					return Integer.compare(r2.totalRiders, r1.totalRiders); 
+					return Integer.compare(r2.totalRiders, r1.totalRiders);
 				}
 			});
 
-			//filter top5
+			// filter top5
 			List<RiderData> top5Riders = riderDataList.size() > 5 ? riderDataList.subList(0, 5) : riderDataList;
 
-			//output
+			// output
 			for (RiderData riderData : top5Riders) {
-				System.out.println("\nThe (position) recorded number of cyclists was in " + riderData.getSeason(riderData.season) + " (season), on a " + riderData.getDay(riderData.day) + " (day) in the month of " +riderData.getMonth(riderData.month) + " (month). There were a total of " + riderData.totalRiders + " (total) cylists. The weather was " + riderData.getWeather(riderData.weather) + " (weather). " + riderData.getDay(riderData.day) + " (day) " + (riderData.holiday ? "was a holiday" : "was not a holiday"));
+				System.out.println("\nThe (position) recorded number of cyclists was in "
+						+ riderData.getSeason(riderData.season) + " (season), on a " + riderData.getDay(riderData.day)
+						+ " (day) in the month of " + riderData.getMonth(riderData.month)
+						+ " (month). There were a total of " + riderData.totalRiders
+						+ " (total) cylists. The weather was " + riderData.getWeather(riderData.weather)
+						+ " (weather). " + riderData.getDay(riderData.day) + " (day) "
+						+ (riderData.holiday ? "was a holiday" : "was not a holiday"));
 			}
 
 		} catch (IOException e) {
@@ -176,6 +185,3 @@ public class Main {
 		}
 	}
 }
-
-
-

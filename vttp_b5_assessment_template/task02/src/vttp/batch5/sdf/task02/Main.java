@@ -1,3 +1,7 @@
+// Name:Muhammad Fahmy bin Zyenal Ebydean
+// Email: fahmyebyyussoff@yahoo.com.sg
+// Group A
+
 package vttp.batch5.sdf.task02;
 
 import java.io.BufferedReader;
@@ -35,7 +39,7 @@ public class Main {
 			String line;
 			int row = 0;
 			while ((line = reader.readLine()) != null && row < 3) {
-				for (int column = 0; column <3 && column < line.length(); column++) {
+				for (int column = 0; column < 3 && column < line.length(); column++) {
 					board[row][column] = line.charAt(column);
 				}
 				row++;
@@ -43,39 +47,39 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return board;
-		
+
 	}
 
 	private static int[][] calculateUtilityTable(char[][] board) {
-		int[][] utilityTable = new int [3][3]; //utility table 2d array
+		int[][] utilityTable = new int[3][3]; // utility table 2d array
 
 		// check for row and column for best, worst and draw move
-		for (int i = 0; i<3; i++) {
-			for (int j = 0; j<3; j++){
-				if (board[i][j] == '.'){
-					if(winningMove(board, i, j, 'x')) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (board[i][j] == '.') {
+					if (winningMove(board, i, j, 'x')) {
 						utilityTable[i][j] = 1; // best
-					} else if (losingMove(board, i, j, 'o')){
+					} else if (losingMove(board, i, j, 'o')) {
 						utilityTable[i][j] = -1; // worst
 					} else {
-						utilityTable[i][j] = 0; //draw
+						utilityTable[i][j] = 0; // draw
 					}
-				} 
+				}
 			}
 		}
 		return utilityTable;
 	}
 
-	private static boolean winningMove(char[][] board, int i, int j , char player ) {
+	private static boolean winningMove(char[][] board, int i, int j, char player) {
 		board[i][j] = player;
 		boolean win = checkIfWin(board, player);
 		board[i][j] = '.';
 		return win;
 	}
 
-	private static boolean losingMove(char[][] board, int i, int j , char cpu ) {
+	private static boolean losingMove(char[][] board, int i, int j, char cpu) {
 		board[i][j] = cpu;
 		boolean lose = checkIfWin(board, cpu);
 		board[i][j] = '.';
@@ -96,8 +100,8 @@ public class Main {
 	}
 
 	private static void printBoard(char[][] board) {
-		for (int i=0; i <3; i++) {
-			for (int j=0; j<3;j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				System.out.println(board[i][j] + " ");
 			}
 			System.out.println();
