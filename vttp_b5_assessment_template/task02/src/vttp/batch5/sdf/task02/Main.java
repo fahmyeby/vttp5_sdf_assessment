@@ -75,14 +75,12 @@ public class Main {
 	private static boolean winningMove(char[][] board, int i, int j, char player) {
 		board[i][j] = player;
 		boolean win = checkIfWin(board, player);
-		board[i][j] = '.';
 		return win;
 	}
 
 	private static boolean losingMove(char[][] board, int i, int j, char cpu) {
 		board[i][j] = cpu;
 		boolean lose = checkIfWin(board, cpu);
-		board[i][j] = '.';
 		return lose;
 	}
 
